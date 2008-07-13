@@ -13,11 +13,14 @@
  * sfEmailValidator verifies a parameter contains a value that qualifies as an
  * email address.
  *
+ * WARNING: This class is deprecated and will be removed in symfony 1.2.
+ *
  * @package    symfony
  * @subpackage validator
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Sean Kerr <sean@code-box.org>
  * @version    SVN: $Id$
+ * @deprecated Deprecated since symfony 1.1
  */
 class sfEmailValidator extends sfValidator
 {

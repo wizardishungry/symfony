@@ -23,10 +23,13 @@
  * # <b>invalid_error</b> - [Invalid input] - An error message to use when the
  *                                          input fails the callback check
  *
+ * WARNING: This class is deprecated and will be removed in symfony 1.2.
+ *
  * @package    symfony
  * @subpackage validator
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id$
+ * @deprecated Deprecated since symfony 1.1
  */
 class sfCallbackValidator extends sfValidator
 {
