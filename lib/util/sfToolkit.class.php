@@ -517,8 +517,15 @@ class sfToolkit
       {
         return $default;
       }
-      $array = &$array[substr($name, $pos + 1, $end - $pos - 1)];
-      $offset = $end;
+      else if (is_array($array))
+      {
+        $array = &$array[substr($name, $pos + 1, $end - $pos - 1)];
+        $offset = $end;
+      }
+      else
+      {
+        return $default;
+      }
     }
 
     return $array;

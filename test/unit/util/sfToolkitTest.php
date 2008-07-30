@@ -10,7 +10,7 @@
 
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 
-$t = new lime_test(103, new lime_output_color());
+$t = new lime_test(104, new lime_output_color());
 
 // ::stringToArray()
 $t->diag('::stringToArray()');
@@ -238,6 +238,7 @@ $t->is(sfToolkit::getArrayValueForPath($arr, 'bar[2]'), null, '::getArrayValueFo
 $t->is(sfToolkit::getArrayValueForPath($arr, 'bar[2]', 'foo'), 'foo', '::getArrayValueForPath() can take an array indexed by integer');
 
 $t->is(sfToolkit::getArrayValueForPath($arr, 'foo[bar][baz][booze]'), null, '::getArrayValueForPath() is not fooled by php mistaking strings and array');
+$t->is(sfToolkit::getArrayValueForPathByRef($arr, 'foo[bar][baz][booze]'), null, '::getArrayValueForPathByRef() is not fooled by php mistaking strings and array');
 
 // ::removeArrayValueForPath()
 $t->diag('::removeArrayValueForPath()');
