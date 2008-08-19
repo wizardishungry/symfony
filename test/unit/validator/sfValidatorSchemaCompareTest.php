@@ -10,7 +10,7 @@
 
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 
-$t = new lime_test(44, new lime_output_color());
+$t = new lime_test(43, new lime_output_color());
 
 $v = new sfValidatorSchemaCompare('left', sfValidatorSchemaCompare::EQUAL, 'right');
 
@@ -69,17 +69,6 @@ try
 catch (InvalidArgumentException $e)
 {
   $t->pass('->clean() throws an InvalidArgumentException exception if the first argument is not an array of value');
-}
-
-$v = new sfValidatorSchemaCompare('left', '==', 'right');
-try
-{
-  $v->clean(array());
-  $t->fail('->clean() throws an InvalidArgumentException exception if the operator does not exist');
-}
-catch (InvalidArgumentException $e)
-{
-  $t->pass('->clean() throws an InvalidArgumentException exception if the operator does not exist');
 }
 
 // ->asString()
