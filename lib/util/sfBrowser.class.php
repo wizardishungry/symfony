@@ -566,7 +566,7 @@ class sfBrowser
       {
         if ($element->getAttribute('checked'))
         {
-          $value = $element->getAttribute('value');
+          $value = $element->hasAttribute('value') ? $element->getAttribute('value') : '1';
         }
       }
       else if ($nodeName == 'input' && $element->getAttribute('type') == 'file')
