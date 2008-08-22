@@ -27,6 +27,11 @@ class sfWebDebugLogger extends sfLogger
   /**
    * Initializes this logger.
    *
+   * Available options:
+   *
+   * - web_debug_class: The web debug class (sfWebDebug by default).
+   * - xdebugLogging:   Whether to add xdebug trace to the logs (false by default).
+   *
    * @param  sfEventDispatcher $dispatcher  A sfEventDispatcher instance
    * @param  array             $options     An array of options.
    *
