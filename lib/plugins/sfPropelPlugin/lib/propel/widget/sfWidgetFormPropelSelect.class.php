@@ -99,6 +99,14 @@ class sfWidgetFormPropelSelect extends sfWidgetFormSelect
 
   public function __clone()
   {
-    $this->setOption('choices', new sfCallable(array($this, 'getChoices')));
+    if ($this->getOption('choices') instanceof sfCallable)
+    {
+      $callable = $this->getOption('choices')->getCallable();
+      if (is_array($callable))
+      {
+        $callable[0] = $this;
+        $this->setOption('choices', new sfCallable($callable));
+      }
+    }
   }
 }
