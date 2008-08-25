@@ -198,12 +198,7 @@ abstract class sfFormPropel extends sfForm
       throw $this->getErrorSchema();
     }
 
-    $values = $this->getValues();
-
-    // remove special columns that are updated automatically
-    unset($values['updated_at'], $values['updated_on'], $values['created_at'], $values['created_on']);
-
-    $this->object->fromArray($values, BasePeer::TYPE_FIELDNAME);
+    $this->object->fromArray($this->getValues(), BasePeer::TYPE_FIELDNAME);
 
     return $this->object;
   }
