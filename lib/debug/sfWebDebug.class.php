@@ -180,7 +180,7 @@ class sfWebDebug
         // sql queries log
         if (preg_match('/execute(?:Query|Update).+?\:\s+(.+)$/', $log, $match))
         {
-          $sqlLogs[] .= $match[1];
+          $sqlLogs[] = $match[1];
         }
 
         ++$line_nb;
