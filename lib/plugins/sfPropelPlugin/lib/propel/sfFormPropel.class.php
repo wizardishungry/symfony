@@ -91,10 +91,9 @@ abstract class sfFormPropel extends sfForm
    * Embeds i18n objects into the current form.
    *
    * @param array   $cultures   An array of cultures
-   * @param string  $nameFormat The format to use for widget name
    * @param string  $decorator  A HTML decorator for the embedded form
    */
-  public function embedI18n($cultures, $nameFormat = null, $decorator = null)
+  public function embedI18n($cultures, $decorator = null)
   {
     if (!$this->isI18n())
     {
@@ -107,7 +106,7 @@ abstract class sfFormPropel extends sfForm
     $i18n = new $class();
     foreach ($cultures as $culture)
     {
-      $this->embedForm($culture, $i18n, $nameFormat, $decorator);
+      $this->embedForm($culture, $i18n, $decorator);
     }
   }
 
