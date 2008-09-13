@@ -675,10 +675,5 @@ class sfWidgetFormSchema extends sfWidgetForm implements ArrayAccess
       // offsetSet will clone the field and change the parent
       $this[$name] = $field;
     }
-    foreach ($this->formFormatters as &$formFormatter)
-    {
-      $formFormatter = clone $formFormatter;
-      $formFormatter->setWidgetSchema($this);
-    }
   }
 }
