@@ -142,7 +142,7 @@ class sfPropelData extends sfData
               {
                 throw new InvalidArgumentException(sprintf('The object "%s" from class "%s" is not defined in your data file.', $value, $relatedTable->getPhpName()));
               }
-              $value = $this->object_references[$relatedTable->getPhpName().'_'.$value]->getPrimaryKey();
+              $value = $this->object_references[$relatedTable->getPhpName().'_'.$value]->getByName($column->getRelatedName(), BasePeer::TYPE_COLNAME);
             }
           }
 
@@ -487,7 +487,7 @@ class sfPropelData extends sfData
 
     return $classes;
   }
-  
+
   protected function fixOrderingOfForeignKeyDataInSameTable($resultsSets, $tableName, $column, $in = null)
   {
     $rs = $this->con->executeQuery(sprintf('SELECT * FROM %s WHERE %s %s',
