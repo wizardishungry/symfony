@@ -1,3 +1,33 @@
+Version 1.1.2
+-------------
+
+* The symfony 1.1.1 broken cache-clear task has been fixed, and updated to work as expected in a muli-application project
+* The command line interface was broken on Microsoft® Windows™ when using arguments. This has been fixed
+* sfYaml now handles long numeric values correctly
+* A bug with autoloading and nested tasks has been fixed
+* Fixed the propel:data-load task doesn't behave correctly with composite primary key
+* The three events available in `sfBaseTask` (`command.filter_options`, `command.pre_command`, and `command.post_command`) are now usable
+* The `sfValidatorChoice` and `sfValidatorChoiceMany` validators now correctly validates if a given value is part of the available choices
+* The `sfForm::mergeForm()` method now also merges widget schema labels
+* It's now possible to set the "value" attribute of a checkbox by using a new `value_attribute_value` option available in `sfWidgetFormInputCheckbox`
+* The `sfValidatorPropelChoice` and `sfValidatorPropelChoiceMany` are now able to use a same Criteria to restrict choices without them being altered in certain circumstances
+* The application configuration class now automatically changes the charset used by widgets to the one set in the `settings.yml` configuration file
+* Now the `sfValidatorTime` validators accept the `00:00:00` time value
+* The `sfWidgetFormSelectRadio` is now able to deal with names that already has the empty square brackets (`[]`) at the end
+* The `sfValidatorNumber` as now increased float precision handling
+* The `sfWidgetFormDate` displays empty values for negative timestamps, so now we can use dates before 1970
+* The `sfValidatorSchemaFilter` now throws an error bound to the filtered field
+* `sfBrowser::setField()` can now deal with an array of fields containing a 0 index
+* `sfDomCssSelector` is now able to target attribute names containing "-" (dash) characters
+* `sfBrowser::restart()` now resets the session as expected
+* `sfBrowser` now sends checked checkboxes with the `value` attributes correctly
+* `sfYaml` now handles long numeric values correctly
+* Exceptions thrown by sfYaml now references the correct line number 
+* The default `propel.ini` file of the sandbox has been fixed. The sandbox is now fully working again without any tweak
+* The mysqli Creole driver is now handling the `0000-00-00` date correctly
+* The autoloading of Model classes autoload now handles ordering correctly
+* Propel tasks are no more broken when Phing is installed as an independent PEAR package
+
 Version 1.1.1
 -------------
 
