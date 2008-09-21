@@ -23,7 +23,7 @@ class sfValidatorI18nChoiceCountry extends sfValidatorChoice
    *
    * Available options:
    *
-   *  * culture:   The culture to use for internationalized strings (required)
+   *  * culture:   The culture to use for internationalized strings
    *  * countries: An array of country codes to use (ISO 3166)
    *
    * @param array $options   An array of options
@@ -35,14 +35,11 @@ class sfValidatorI18nChoiceCountry extends sfValidatorChoice
   {
     parent::configure($options, $messages);
 
-    $this->addRequiredOption('culture');
+    $this->addOption('culture');
     $this->addOption('countries');
 
     // populate choices with all countries
-    $culture = isset($options['culture']) ? $options['culture'] : 'en';
-
-    $cultureInfo = new sfCultureInfo($culture);
-    $countries = array_keys($cultureInfo->getCountries());
+    $countries = array_keys(sfCultureInfo::getInstance()->getCountries());
 
     // restrict countries to a sub-set
     if (isset($options['countries']))
