@@ -297,6 +297,11 @@ class sfProjectConfiguration
    */
   static public function getActive()
   {
+    if (is_null(sfProjectConfiguration::$active))
+    {
+      throw new RuntimeException('There is no active configuration.');
+    }
+
     return sfProjectConfiguration::$active;
   }
 
