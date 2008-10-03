@@ -1,7 +1,14 @@
+Version 1.1.4
+-------------
+
+* fixed XSS vulnerability in error messages if they embed the value submitted by the user
+* fixed default charset encoding for validator to the one defined in settings.yml
+* fixed functional tests fail when compression is enabled (#4019)
+
 Version 1.1.3
 -------------
 
-* [1.1] fixed locking problem with symfony `cache:clear` task (closes #4470)
+* fixed locking problem with symfony `cache:clear` task (#4470)
 
 Version 1.1.2
 -------------
