@@ -10,7 +10,7 @@
 
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 
-$t = new lime_test(61, new lime_output_color());
+$t = new lime_test(70, new lime_output_color());
 
 $w1 = new sfWidgetFormInput(array(), array('class' => 'foo1'));
 $w2 = new sfWidgetFormInput();
@@ -356,6 +356,22 @@ foreach ($f1 as $name => $widget)
 {
   $t->ok($widget !== $f[$name], '__clone() clones embedded widgets');
   $t->ok($widget == $f[$name], '__clone() clones embedded widgets');
+}
+
+$w = new sfWidgetFormSchema();
+$w->addFormFormatter('table', new sfWidgetFormSchemaFormatterTable($w));
+$w->addFormFormatter('list', new sfWidgetFormSchemaFormatterList($w));
+$w1 = clone $w;
+$f1 = $w1->getFormFormatters();
+$f = $w->getFormFormatters();
+$t->is(array_keys($f1), array_keys($f), '__clone() clones form formatters');
+foreach ($f1 as $key => $formFormatter)
+{
+  $t->ok($formFormatter !== $f[$key], '__clone() clones form formatters');
+  $t->is(get_class($formFormatter), get_class($f[$key]), '__clone() clones form formatters');
+
+  $t->ok($formFormatter->getWidgetSchema() !== $f[$key]->getWidgetSchema(), '__clone() clones form formatters');
+  $t->is(get_class($formFormatter->getWidgetSchema()), get_class($f[$key]->getWidgetSchema()), '__clone() clones form formatters');
 }
 
 // setDefaultFormFormatterName()
