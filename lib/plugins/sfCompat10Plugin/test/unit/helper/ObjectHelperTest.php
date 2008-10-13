@@ -9,11 +9,11 @@
  */
 
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
-require_once($_test_dir.'/unit/sfContextMock.class.php');
+require_once($_test_dir.'/../../../../test/unit/sfContextMock.class.php');
 require_once(dirname(__FILE__).'/TestObject.php');
 
-require_once(dirname(__FILE__).'/../../../lib/helper/HelperHelper.php');
-require_once(dirname(__FILE__).'/../../../lib/helper/TagHelper.php');
+require_once(sfConfig::get('sf_symfony_lib_dir').'/helper/HelperHelper.php');
+require_once(sfConfig::get('sf_symfony_lib_dir').'/helper/TagHelper.php');
 require_once(dirname(__FILE__).'/../../../lib/helper/FormHelper.php');
 require_once(dirname(__FILE__).'/../../../lib/helper/ObjectHelper.php');
 
