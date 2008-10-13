@@ -32,7 +32,7 @@ class sfPropelBuildSchemaTask extends sfPropelBaseTask
     $this->aliases = array('propel-build-schema');
     $this->namespace = 'propel';
     $this->name = 'build-schema';
-    $this->briefDescription = 'Creates a schema.xml from an existing database';
+    $this->briefDescription = 'Creates a schema from an existing database';
 
     $this->detailedDescription = <<<EOF
 The [propel:build-schema|INFO] task introspects a database to create a schema:
