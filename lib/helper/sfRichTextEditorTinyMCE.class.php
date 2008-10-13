@@ -55,7 +55,7 @@ class sfRichTextEditorTinyMCE extends sfRichTextEditor
 
     sfContext::getInstance()->getResponse()->addJavascript($js_path);
 
-    require_once sfConfig::get('sf_symfony_lib_dir').'/helper/JavascriptBaseHelper.php';
+    require_once dirname(__FILE__).'/JavascriptBaseHelper.php';
 
     $tinymce_options = '';
     $style_selector  = '';
