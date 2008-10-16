@@ -88,3 +88,15 @@ $b->
   isResponseHeader('foo', 'bar')->
   isResponseHeader('foo', 'foobar')
 ;
+
+// sfBrowser: clean the custom view templates
+$b->
+  get('/browser/templateCustom')->
+  checkResponseElement('#test', 'template')->
+
+  get('/browser/templateCustom/custom/1')->
+  checkResponseElement('#test', 'template 1')->
+
+  get('/browser/templateCustom')->
+  checkResponseElement('#test', 'template')
+;

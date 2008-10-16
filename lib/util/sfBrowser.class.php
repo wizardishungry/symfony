@@ -31,7 +31,8 @@ class sfBrowser
     $vars               = array(),
     $defaultServerArray = array(),
     $headers            = array(),
-    $currentException   = null;
+    $currentException   = null,
+    $rawConfiguration   = null;
 
   /**
    * Class constructor.
@@ -414,11 +415,16 @@ class sfBrowser
         $configuration = ProjectConfiguration::getApplicationConfiguration($currentConfiguration->getApplication(), $currentConfiguration->getEnvironment(), $currentConfiguration->isDebug());
         $this->context = sfContext::createInstance($configuration);
         unset($currentConfiguration);
+
+        sfConfig::clear();
+        sfConfig::add($this->rawConfiguration);
       }
       else
       {
         $this->context = sfContext::getInstance();
         $this->context->initialize($this->context->getConfiguration());
+
+        $this->rawConfiguration = sfConfig::getAll();
       }
 
       $this->context->getEventDispatcher()->connect('application.throw_exception', array($this, 'ListenToException'));
