@@ -388,6 +388,40 @@ class sfWidgetFormSchema extends sfWidgetForm implements ArrayAccess
   }
 
   /**
+   * Gets the stylesheet paths associated with the widget.
+   *
+   * @return array An array of stylesheet paths
+   */
+  public function getStylesheets()
+  {
+    $stylesheets = array();
+
+    foreach ($this->fields as $field)
+    {
+      $stylesheets = array_merge($stylesheets, $field->getStylesheets());
+    }
+
+    return $stylesheets;
+  }
+
+  /**
+   * Gets the JavaScript paths associated with the widget.
+   *
+   * @return array An array of JavaScript paths
+   */
+  public function getJavaScripts()
+  {
+    $javascripts = array();
+
+    foreach ($this->fields as $field)
+    {
+      $javascripts = array_merge($javascripts, $field->getJavaScripts());
+    }
+
+    return $javascripts;
+  }
+
+  /**
    * Returns true if the widget schema needs a multipart form.
    *
    * @return bool true if the widget schema needs a multipart form, false otherwise
@@ -547,16 +581,9 @@ class sfWidgetFormSchema extends sfWidgetForm implements ArrayAccess
   {
     $format = $this->getNameFormat();
 
-    if ('[%s]' == substr($format, -4))
+    if ('[%s]' == substr($format, -4) && preg_match('/^(.+?)\[(.+)\]$/', $name, $match))
     {
-      if (preg_match('/^(.+?)\[(.+)\]$/', $name, $match))
-      {
-        $name = sprintf('%s[%s][%s]', substr($format, 0, -4), $match[1], $match[2]);
-      }
-      else
-      {
-        $name = sprintf('%s[%s]', substr($format, 0, -4), $name);
-      }
+      $name = sprintf('%s[%s][%s]', substr($format, 0, -4), $match[1], $match[2]);
     }
     else if (false !== $format)
     {

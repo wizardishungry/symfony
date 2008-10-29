@@ -302,6 +302,10 @@ class sfProjectConfiguration
       {
         unset($this->plugins[$pos]);
       }
+      else
+      {
+        throw new InvalidArgumentException(sprintf('The plugin "%s" does not exist.', $plugin));
+      }
     }
 
     $this->pluginPaths = array();
@@ -375,7 +379,7 @@ class sfProjectConfiguration
     $pluginPaths = $this->getAllPluginPaths();
 
     // order the plugins
-    $basePaths = array_map(create_function('$v', 'return basename($v);'), $pluginPaths);
+    $basePaths = array_map('basename', $pluginPaths);
     $this->pluginPaths[''] = array();
 
     foreach ($this->getPlugins() as $plugin)

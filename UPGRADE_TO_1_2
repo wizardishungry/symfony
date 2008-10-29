@@ -365,6 +365,19 @@ rendered individually in a template:
       <?php endforeach; ?>
     </ul>
 
+Forms now have a `getStylesheets()` and a `getJavaScripts()` method that return
+the stylesheets and the JavaScripts files needed to render the form. These files
+can be defined in the form itself by overriding these two methods,
+or more commonly by each widget (see the Widget paragraph to learn how).
+
+In a template, you can use the `include_javascripts_for_form()` and
+`include_stylesheets_for_form()` helpers to render them as HTML. They both
+take a form object as an argument:
+
+    [php]
+    <?php include_javascripts_for_form($form) ?>
+    <?php include_stylesheets_for_form($form) ?>
+
 Validators
 ----------
 
@@ -540,6 +553,26 @@ when used in a widget schema context:
     $widget->setLabel('Enter your name here');
     echo $widget->getLabel();
 
+Widgets can declare the JavaScripts and stylesheets they need to be rendered with
+the `getJavaScripts()` and `getStylesheets()` methods:
+
+    [php]
+    class MyWidget extends sfWidgetForm
+    {
+      public function getJavaScripts()
+      {
+        return array('/path/to/a/file.js');
+      }
+
+      public function getStylesheets()
+      {
+        return array('/path/to/a/file.css' => 'all', '/path/to/a/file.css' => 'screen,print');
+      }
+    }
+
+The `getJavaScripts()` method must return an array of JavaScript files.
+The `getStylesheets()` method must return an array with files as keys and media as values.
+
 Response
 --------
 
@@ -633,7 +666,7 @@ As a new addition, `javascript_tag()` now can behave as `slot()`. This allows su
 >creation of the symlink in the web directory this is required for core plugins as well.
 >To do this manually you need to invoke:
 >
-> `symfony plugin:configure-core`
+> `symfony plugin:publish-assets --only-core`
 >
 > The target is that the project creation and upgrade task do this for you.
 
@@ -1447,6 +1480,27 @@ argument and must return an `Article` object:
 
         return self::doSelectOne($criteria);
       }
+    }
+
+`sfPropelRoute` also provide a `setListCriteria()` method to override the
+route parsed parameters. This is especially useful when you want to refine the
+objects returned by the route, based on some other parameters, like
+a filter for example:
+
+    [php]
+    public function executeList($request)
+    {
+      $this->filters = new ArticleFormFilter();
+      if ($request->isMethod('post'))
+      {
+        $this->filters->bind($request->getParameter('article_filters'));
+        if ($this->filters->isValid())
+        {
+          $this->getRoute()->setListCriteria($this->filters->getCriteria());
+        }
+      }
+
+      $this->articles = $this->getRoute()->getObjects();
     }
 
 URL helpers
