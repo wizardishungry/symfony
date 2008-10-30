@@ -225,6 +225,7 @@ abstract class sfModelGenerator extends sfGenerator
 [?php if (\$sf_user->hasCredential($credentials)): ?]
 $content
 [?php endif; ?]
+
 EOF;
     }
     else

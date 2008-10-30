@@ -159,11 +159,27 @@ class sfModelGeneratorConfiguration
         }
       }
     }
-  }
 
-  public function hasFormAction($action)
-  {
-    
+    // action credentials
+    $this->configuration['credentials'] = array(
+      'list'   => array(),
+      'new'    => array(),
+      'create' => array(),
+      'edit'   => array(),
+      'update' => array(),
+      'delete' => array(),
+    );
+    foreach ($this->getActionsDefault() as $action => $params)
+    {
+      if (0 === strpos($action, '_'))
+      {
+        $action = substr($action, 1);
+      }
+
+      $this->configuration['credentials'][$action] = isset($params['credentials']) ? $params['credentials'] : array();
+    }
+    $this->configuration['credentials']['create'] = $this->configuration['credentials']['new'];
+    $this->configuration['credentials']['update'] = $this->configuration['credentials']['edit'];
   }
 
   public function getContextConfiguration($context, $fields = null)
@@ -297,5 +313,12 @@ class sfModelGeneratorConfiguration
     }
 
     $parameters['class_suffix'] = strtolower('_' == $action[0] ? substr($action, 1) : $action);
+
+    // merge with defaults
+    $defaults = $this->getActionsDefault();
+    if (isset($defaults[$action]))
+    {
+      $parameters = array_merge($defaults[$action], $parameters);
+    }
   }
 }
