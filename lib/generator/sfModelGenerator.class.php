@@ -110,6 +110,16 @@ abstract class sfModelGenerator extends sfGenerator
   }
 
   /**
+   * Gets the i18n catalogue to use for user strings.
+   *
+   * @return string The i18n catalogue
+   */
+  public function getI18nCatalogue()
+  {
+    return isset($this->params['i18n_catalogue']) ? $this->params['i18n_catalogue'] : 'messages';
+  }
+
+  /**
    * Returns PHP code for primary keys parameters.
    *
    * @param integer $indent The indentation value
@@ -194,7 +204,7 @@ abstract class sfModelGenerator extends sfGenerator
 
     $url_params = $pk_link ? '?'.$this->getPrimaryKeyUrlParams() : '\'';
 
-    return '[?php echo link_to(__(\''.$params['name'].'\'), \''.$this->getModuleName().'/'.$action.$url_params.', '.$this->asPhp($params['params']).') ?]';
+    return '[?php echo link_to(__(\''.$params['name'].'\'), \''.$this->getModuleName().'/'.$action.$url_params.', '.$this->asPhp($params['params']).', \''.$this->getI18nCatalogue().'\') ?]';
   }
 
   /**
@@ -287,7 +297,7 @@ EOF;
       $vars[] = '\'%%'.$field->getName().'%%\' => '.$this->renderField($field);
     }
 
-    return sprintf("__('%s', array(%s))", $value, implode(', ', $vars));
+    return sprintf("__('%s', array(%s), '%s')", $value, implode(', ', $vars), $this->getI18nCatalogue());
   }
 
   /**
