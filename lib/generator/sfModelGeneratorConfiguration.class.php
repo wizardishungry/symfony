@@ -99,6 +99,10 @@ class sfModelGeneratorConfiguration
     foreach ($this->getListDisplay() as $name)
     {
       list($name, $flag) = sfModelGeneratorConfigurationField::splitFieldWithFlag($name);
+      if (!isset($this->configuration['list']['fields'][$name]))
+      {
+        $this->configuration['list']['fields'][$name] = new sfModelGeneratorConfigurationField($name, array_merge(array('is_real' => false, 'type' => 'Text'), isset($config['list'][$name]) ? $config['list'][$name] : array()));
+      }
       $field = $this->configuration['list']['fields'][$name];
       $field->setFlag($flag);
       $this->configuration['list']['display'][$name] = $field;
