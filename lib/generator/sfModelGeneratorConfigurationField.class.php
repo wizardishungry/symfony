@@ -26,13 +26,33 @@ class sfModelGeneratorConfigurationField
     $this->config = $config;
   }
 
+  /**
+   * Returns the name of the field.
+   *
+   * @return string The field name
+   */
   public function getName()
   {
     return $this->name;
   }
 
-  public function getConfig($key, $default = null)
+  /**
+   * Returns the configuration value for a given key.
+   *
+   * If the key is null, the method returns all the configuration array.
+   *
+   * @param  string $key     A key string
+   * @param  mixed  $default The default value if the key does not exist
+   *
+   * @return mixed  The configuration value associated with the key
+   */
+  public function getConfig($key = null, $default = null)
   {
+    if (is_null($key))
+    {
+      return $this->config;
+    }
+
     if ('label' == $key && !isset($this->config['label']))
     {
       return sfInflector::humanize(sfInflector::underscore($this->name));
@@ -41,6 +61,11 @@ class sfModelGeneratorConfigurationField
     return sfModelGeneratorConfiguration::getFieldConfigValue($this->config, $key, $default);
   }
 
+  /**
+   * Returns the type of the field.
+   *
+   * @return string The field type
+   */
   public function getType()
   {
     return $this->config['type'];
@@ -66,6 +91,11 @@ class sfModelGeneratorConfigurationField
     return isset($this->config['is_partial']) ? $this->config['is_partial'] : false;
   }
 
+  /**
+   * Sets or unsets the partial flag.
+   *
+   * @param Boolean $boolean true if the field is a partial, false otherwise
+   */
   public function setPartial($boolean)
   {
     $this->config['is_partial'] = $boolean;
@@ -81,6 +111,11 @@ class sfModelGeneratorConfigurationField
     return isset($this->config['is_component']) ? $this->config['is_component'] : false;
   }
 
+  /**
+   * Sets or unsets the component flag.
+   *
+   * @param Boolean $boolean true if the field is a component, false otherwise
+   */
   public function setComponent($boolean)
   {
     $this->config['is_component'] = $boolean;
@@ -96,6 +131,11 @@ class sfModelGeneratorConfigurationField
     return isset($this->config['is_link']) ? $this->config['is_link'] : false;
   }
 
+  /**
+   * Sets or unsets the link flag.
+   *
+   * @param Boolean $boolean true if the field is a link, false otherwise
+   */
   public function setLink($boolean)
   {
     $this->config['is_link'] = $boolean;
@@ -115,6 +155,13 @@ class sfModelGeneratorConfigurationField
     return array($field, $flag);
   }
 
+  /**
+   * Sets a flag.
+   *
+   * The flag can be =, _, or ~.
+   *
+   * @param string The flag
+   */
   public function setFlag($flag)
   {
     if (is_null($flag))
@@ -138,6 +185,17 @@ class sfModelGeneratorConfigurationField
     }
   }
 
+  /**
+   * Gets the flag associated with the field.
+   *
+   * The flag will be
+   *
+   *   * = for a link
+   *   * _ for a partial
+   *   * ~ for a component
+   *
+   * @return string The flag
+   */
   public function getFlag()
   {
     if ($this->isLink())
