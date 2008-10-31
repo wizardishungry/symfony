@@ -237,7 +237,7 @@ EOF;
   /**
    * Returns HTML code for a field.
    *
-   * @param string  $field The field name
+   * @param sfModelGeneratorConfigurationField $field The field
    *
    * @return string HTML code
    */
