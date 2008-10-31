@@ -41,12 +41,13 @@ class sfModelGeneratorConfigurationField
    *
    * If the key is null, the method returns all the configuration array.
    *
-   * @param  string $key     A key string
-   * @param  mixed  $default The default value if the key does not exist
+   * @param  string  $key     A key string
+   * @param  mixed   $default The default value if the key does not exist
+   * @param  Boolean $escaped Whether to escape single quote (false by default)
    *
-   * @return mixed  The configuration value associated with the key
+   * @return mixed   The configuration value associated with the key
    */
-  public function getConfig($key = null, $default = null)
+  public function getConfig($key = null, $default = null, $escaped = false)
   {
     if (is_null($key))
     {
@@ -58,7 +59,9 @@ class sfModelGeneratorConfigurationField
       return sfInflector::humanize(sfInflector::underscore($this->name));
     }
 
-    return sfModelGeneratorConfiguration::getFieldConfigValue($this->config, $key, $default);
+    $value = sfModelGeneratorConfiguration::getFieldConfigValue($this->config, $key, $default);
+
+    return $escaped ? str_replace("'", "\\'", $value) : $value;
   }
 
   /**
