@@ -229,8 +229,7 @@ class sfPropelData extends sfData
       return;
     }
 
-    rsort($fixtureFiles);
-    foreach ($fixtureFiles as $fixture_file)
+    foreach (array_reverse($fixtureFiles) as $fixture_file)
     {
       $data = sfYaml::load($fixture_file);
 
@@ -241,8 +240,7 @@ class sfPropelData extends sfData
       }
 
       $classes = array_keys($data);
-      krsort($classes);
-      foreach ($classes as $class)
+      foreach (array_reverse($classes) as $class)
       {
         $class = trim($class);
         if (in_array($class, $this->deletedClasses))
