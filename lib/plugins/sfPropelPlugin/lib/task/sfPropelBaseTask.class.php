@@ -35,7 +35,7 @@ abstract class sfPropelBaseTask extends sfBaseTask
 
       $libDir = dirname(__FILE__).'/..';
 
-      $autoloader = sfSimpleAutoload::getInstance();
+      $autoloader = sfSimpleAutoload::getInstance(sfConfig::get('sf_cache_dir').'/project_autoload.cache');
       $autoloader->addDirectory($libDir.'/vendor/creole');
       $autoloader->addDirectory($libDir.'/vendor/propel');
       $autoloader->addDirectory($libDir.'/creole');
