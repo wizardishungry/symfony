@@ -63,7 +63,7 @@ abstract class sfBaseTask extends sfCommandApplicationTask
       }
     }
 
-    $autoloader = sfSimpleAutoload::getInstance();
+    $autoloader = sfSimpleAutoload::getInstance(sfConfig::get('sf_cache_dir').'/project_autoload.cache');
     foreach ($this->configuration->getModelDirs() as $dir)
     {
       $autoloader->addDirectory($dir);
