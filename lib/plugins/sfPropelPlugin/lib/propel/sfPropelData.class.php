@@ -229,7 +229,8 @@ class sfPropelData extends sfData
       return;
     }
 
-    foreach (array_reverse($fixtureFiles) as $fixture_file)
+    rsort($fixtureFiles);
+    foreach ($fixtureFiles as $fixture_file)
     {
       $data = sfYaml::load($fixture_file);
 
