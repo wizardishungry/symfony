@@ -178,7 +178,7 @@ class sfWebDebug
         $log = $this->formatLogLine($log);
 
         // sql queries log
-        if (preg_match('/execute(?:Query|Update).+?\:\s+(.+)$/', $log, $match))
+        if (preg_match('/execute(?:Query|Update).+?\:\s+((.|\n)+)$/', $log, $match))
         {
           $sqlLogs[] = $match[1];
         }
