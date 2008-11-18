@@ -403,7 +403,7 @@ abstract class sfApplicationConfiguration extends ProjectConfiguration
    *
    * @return array An array of i18n directories
    */
-  public function getI18NGlobalDirs()
+  public function getDecoratorDirsGlobalDirs()
   {
     $dirs = array();
 
@@ -446,21 +446,12 @@ abstract class sfApplicationConfiguration extends ProjectConfiguration
       $dirs[] = $dir;
     }
 
-    // module in plugins
-    $pluginDirs = glob(sfConfig::get('sf_plugins_dir').'/*/modules/'.$moduleName.'/i18n');
-    if (isset($pluginDirs[0]))
-    {
-      $dirs[] = $pluginDirs[0];
-    }
-
-    // plugins
-    $pluginDirs = glob(sfConfig::get('sf_plugins_dir').'/*/i18n');
-    if (isset($pluginDirs[0]))
-    {
-      $dirs[] = $pluginDirs[0];
-    }
-
-    return $dirs;
+    // plugins, module in plugins
+    return array_merge(
+      $dirs,
+      (array) glob(sfConfig::get('sf_plugins_dir').'/*/modules/'.$moduleName.'/i18n'),
+      (array) glob(sfConfig::get('sf_plugins_dir').'/*/i18n')
+    );
   }
 
   /**
