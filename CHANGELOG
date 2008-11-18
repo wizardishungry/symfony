@@ -1,3 +1,14 @@
+Version 1.1.5
+-------------
+
+* sfValidatorAnd and sfValidatorOr validators are now required by default, which is the normal expected behavior
+* fixed a weird bug when using cache with layout in an environment with the web_debug setting turned on
+* decreased symfony response time when using the command line interface, especially under Microsoft® Windows™
+* fixed global cache never cleared
+* fixed symfony was using a wrong propel version by misusing the set_include_path function
+* fixed bug in sfNumberFormat when handling large numbers
+* the HTTP version used to send the response can now be configured
+
 Version 1.1.4
 -------------
 
