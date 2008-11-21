@@ -56,7 +56,9 @@ EOF;
     if (preg_match('/^# FROZEN_SF_LIB_DIR\: (.+?)$/m', $content, $match))
     {
       $content = str_replace("# FROZEN_SF_LIB_DIR: {$match[1]}\n\n", '', $content);
-      $content = preg_replace('#^require_once.+?$#m', "require_once '{$match[1]}/autoload/sfCoreAutoload.class.php';", $content, 1);
+      // need to escape windows pathes "symfony\1.2" -> "symfony\\1.2"
+      // because preg_replace would then use \1 as group identifier resulting in "symfony.2"
+      $content = preg_replace('#^require_once.+?$#m', sprintf("require_once '%s/autoload/sfCoreAutoload.class.php';", str_replace('\\', '\\\\', $match[1])), $content, 1);
       file_put_contents($config, $content);
     }
 
