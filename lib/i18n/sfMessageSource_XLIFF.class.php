@@ -424,6 +424,7 @@ class sfMessageSource_XLIFF extends sfMessageSource_File
 
     return <<<EOD
 <?xml version="1.0" ?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd" >
 <xliff version="1.0">
   <file source-language="EN" target-language="{$this->culture}" datatype="plaintext" original="$catalogue" date="$date" product-name="$catalogue">
     <header />
