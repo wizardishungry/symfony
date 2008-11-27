@@ -414,10 +414,9 @@ abstract class sfApplicationConfiguration extends ProjectConfiguration
     }
 
     // plugins
-    $pluginDirs = glob(sfConfig::get('sf_plugins_dir').'/*/i18n');
-    if (isset($pluginDirs[0]))
+    if ($pluginDirs = glob(sfConfig::get('sf_plugins_dir').'/*/i18n'))
     {
-      $dirs[] = $pluginDirs[0];
+      $dirs = array_merge($dirs, $pluginDirs);
     }
 
     return $dirs;
@@ -446,12 +445,19 @@ abstract class sfApplicationConfiguration extends ProjectConfiguration
       $dirs[] = $dir;
     }
 
-    // plugins, module in plugins
-    return array_merge(
-      $dirs,
-      (array) glob(sfConfig::get('sf_plugins_dir').'/*/modules/'.$moduleName.'/i18n'),
-      (array) glob(sfConfig::get('sf_plugins_dir').'/*/i18n')
-    );
+    // modules in plugins
+    if ($pluginDirs = glob(sfConfig::get('sf_plugins_dir').'/*/modules/'.$moduleName.'/i18n'))
+    {
+      $dirs = array_merge($dirs, $pluginDirs);
+    }
+
+    // plugins
+    if ($pluginDirs = glob(sfConfig::get('sf_plugins_dir').'/*/i18n'))
+    {
+      $dirs = array_merge($dirs, $pluginDirs);
+    }
+
+    return $dirs;
   }
 
   /**
