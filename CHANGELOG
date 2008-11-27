@@ -1,3 +1,13 @@
+Version 1.1.6
+-------------
+
+* fixed PHP could segfault when parsing large SQL queries in web debug toolbar
+* fixed PHP warning with symfony binary out of a project
+* fixed i18n wrong i18n directories management
+* fixed sfRequest::getUri() when using Microsoft IIS
+* fixed i18n:extract checks and saves to lib/symfony/plugins/sfPropelPlugin/i18n instead of the apps i18n folder
+* fixed i18n tasks doesn't generate valid XLIFF files
+
 Version 1.1.5
 -------------
 
