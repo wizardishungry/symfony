@@ -517,19 +517,19 @@ function sfTestBrowserErrorHandler($errno, $errstr, $errfile, $errline)
   switch ($errno)
   {
     case E_WARNING:
-      $msg = printf($msg, 'warning');
+      $msg = sprintf($msg, 'warning');
       throw new Exception($msg);
       break;
     case E_NOTICE:
-      $msg = printf($msg, 'notice');
-      throw new Exception();
+      $msg = sprintf($msg, 'notice');
+      throw new Exception($msg);
       break;
     case E_STRICT:
-      $msg = printf($msg, 'strict');
+      $msg = sprintf($msg, 'strict');
       throw new Exception($msg);
       break;
     case E_RECOVERABLE_ERROR:
-      $msg = printf($msg, 'catchable');
+      $msg = sprintf($msg, 'catchable');
       throw new Exception($msg);
       break;
   }
