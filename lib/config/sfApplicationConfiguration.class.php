@@ -403,7 +403,7 @@ abstract class sfApplicationConfiguration extends ProjectConfiguration
    *
    * @return array An array of i18n directories
    */
-  public function getI18NDirsGlobalDirs()
+  public function getI18NGlobalDirs()
   {
     $dirs = array();
 
