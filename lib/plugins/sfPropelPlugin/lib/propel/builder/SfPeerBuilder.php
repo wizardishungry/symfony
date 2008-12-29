@@ -409,7 +409,7 @@ class SfPeerBuilder extends PHP5ComplexPeerBuilder
       $behavior_include_script = <<<EOF
 
 
-if (ProjectConfiguration::getActive() instanceof sfApplicationConfiguration)
+if (sfProjectConfiguration::getActive() instanceof sfApplicationConfiguration)
 {
   include_once '%s';
 }
