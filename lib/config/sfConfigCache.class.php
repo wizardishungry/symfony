@@ -354,6 +354,7 @@ class sfConfigCache
    */
   public function registerConfigHandler($handler, $class, $params = array())
   {
+    class_exists($class);
     $this->userHandlers[$handler] = new $class($params);
   }
 
