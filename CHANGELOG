@@ -42,6 +42,7 @@ All the new features are documented in the What's new? tutorial (http://www.symf
 * [14010]: fixed Error when uploading files for Embeds forms (closes #5253)
 
 Doctrine Plugin
+
 * [14550]: fixes error when uploading files for embedded forms (closes #5485) 
 * [14501]: fixes sfDoctrineRoute to return object instead of null (closes #5540)
 * [14500]: fixes issue where filter functions for fields are not camelized (closes #5468)
@@ -103,6 +104,7 @@ Version 1.2.1
 * [13572]: fixed request format does not always set layout false for non-html content 
 
 Doctrine Plugin
+
 * [13857]: fixes issue with choice validators (fixes #5192)
 * [13856]: fixing strict standards notice
 * [13854]: fixes issue with global schema elements (fixes #5194)
@@ -112,6 +114,7 @@ Doctrine Plugin
 * [13845]: fixes multiple issues and missing functionality in sfDoctrineRoute
 
 Propel Plugin
+
 * [13927]: fixed a regression with the handling of CLOB datatype in propel 1.3 in conjunction with forms. fixes #5263
 * [13723]: made queries in the propel debug toolbar copy-and-pasteable
 * [13592]: fixed propel:generate-admin task help message
@@ -159,6 +162,7 @@ Version 1.2.0
 * [13373]: fixed sfConfig::set('sf_web_debug', false) in an action doesn't disable the toolbar (closes #5063)
 
 Doctrine Plugin
+
 * [13512]: made batch actions javascript xhtml compliant
 * [13511]: reverted r13509
 * [13509]: fixed typo
@@ -179,6 +183,7 @@ Doctrine Plugin
 * [13385]: fixes issue with check for package param being too general (closes #5085)
 
 Propel Plugin
+
  * [13512]: made batch actions javascript xhtml compliant
  * [13511]: reverted r13509
  * [13509]: fixed typo
@@ -262,6 +267,7 @@ Version 1.2.0 RC1
 * [12920]: fixed symfony default CLI
 
 Doctrine Plugin
+
 * [13231]: removed unneeded file from fixtures
 * [13219]: Fixing generated children forms and test fixtures from last commit
 * [13218]: fixing path of base filter class
@@ -285,6 +291,7 @@ Doctrine Plugin
 * [12900]: committing update to tests for generated base models
 
 Propel Plugin
+
 * [13234]: fixed invalid assumption when loading propel map builders
 * [13197]: fixed propel autoload config
 * [13140]: Renamed task filenames to match classes.
@@ -370,6 +377,7 @@ Version 1.2.0 beta2
 * [12562]: fixed case-sensitivity problem
 
 Doctrine Plugin
+
 * [12892]: fixed sfDoctrineForm::saveFile() when a filename is provided (closes #4839)
 * [12890]: fixes #4594
 * [12889]: fixes issue with sfDoctrineColumng::isNotNull()
@@ -400,6 +408,7 @@ Doctrine Plugin
 * [12595]: fixed ObjectHelper for doctrine (closes #4602)
 
 Propel Plugin
+
 * [12891]: fixed sfFormPropel::saveFile() when a filename is provided (closes #4839)
 * [12851]: fixed i18n in Propel forms
 * [12812]: fixed order of data deleting in sfPropelData (closes #4783)
@@ -410,7 +419,6 @@ Propel Plugin
 * [12637]: added nested save support to sfPropelForm
 * [12596]: sfPropelPlugin: updated API doc
 * [12591]: sfWidgetFormPropelChoice, sfWidgetFormPropelSelect : added added peer_method option
-
 * [12893]: added lv translation for the admin generator
 * [12612]: added ar translation for the admin generator (thanks to Pascal
 * [12611]: added hu translation for the admin generator (thanks to Vajo Gaspar)
