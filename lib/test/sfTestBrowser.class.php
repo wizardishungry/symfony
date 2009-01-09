@@ -510,25 +510,31 @@ function sfTestBrowserErrorHandler($errno, $errstr, $errfile, $errline)
 {
   if (($errno & error_reporting()) == 0)
   {
-    return;
+    return false;
   }
 
   $msg = sprintf('PHP send a "%%s" error at %s line %s (%s)', $errfile, $errline, $errstr);
   switch ($errno)
   {
     case E_WARNING:
-      throw new Exception(sprintf($msg, 'warning'));
+      $msg = sprintf($msg, 'warning');
+      throw new Exception($msg);
       break;
     case E_NOTICE:
-      throw new Exception(sprintf($msg, 'notice'));
+      $msg = sprintf($msg, 'notice');
+      throw new Exception($msg);
       break;
     case E_STRICT:
-      throw new Exception(sprintf($msg, 'strict'));
+      $msg = sprintf($msg, 'strict');
+      throw new Exception($msg);
       break;
     case E_RECOVERABLE_ERROR:
-      throw new Exception(sprintf($msg, 'catchable'));
+      $msg = sprintf($msg, 'catchable');
+      throw new Exception($msg);
       break;
   }
+
+  return false;
 }
 
 set_error_handler('sfTestBrowserErrorHandler');

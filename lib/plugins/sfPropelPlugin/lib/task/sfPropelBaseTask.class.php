@@ -35,7 +35,7 @@ abstract class sfPropelBaseTask extends sfBaseTask
 
       $libDir = dirname(__FILE__).'/..';
 
-      $autoloader = sfSimpleAutoload::getInstance();
+      $autoloader = sfSimpleAutoload::getInstance(sfConfig::get('sf_cache_dir').'/project_autoload.cache');
       $autoloader->addDirectory($libDir.'/vendor/creole');
       $autoloader->addDirectory($libDir.'/vendor/propel');
       $autoloader->addDirectory($libDir.'/creole');
@@ -51,7 +51,7 @@ abstract class sfPropelBaseTask extends sfBaseTask
 
   protected function schemaToYML($checkSchema = self::CHECK_SCHEMA, $prefix = '')
   {
-    $finder = sfFinder::type('file')->name('*schema.xml');
+    $finder = sfFinder::type('file')->name('*schema.xml')->prune('doctrine');
 
     $schemas = array_unique(array_merge($finder->in('config'), $finder->in(glob(sfConfig::get('sf_plugins_dir').DIRECTORY_SEPARATOR.'*'.DIRECTORY_SEPARATOR.'config'))));
     if (self::CHECK_SCHEMA === $checkSchema && !count($schemas))
@@ -85,7 +85,7 @@ abstract class sfPropelBaseTask extends sfBaseTask
 
   protected function schemaToXML($checkSchema = self::CHECK_SCHEMA, $prefix = '')
   {
-    $finder = sfFinder::type('file')->name('*schema.yml');
+    $finder = sfFinder::type('file')->name('*schema.yml')->prune('doctrine');
     $dirs = array('config');
     if ($pluginDirs = glob(sfConfig::get('sf_plugins_dir').'/*/config'))
     {
@@ -161,7 +161,7 @@ abstract class sfPropelBaseTask extends sfBaseTask
   {
     if($dirs = glob(sfConfig::get('sf_plugins_dir').DIRECTORY_SEPARATOR.'*'.DIRECTORY_SEPARATOR.'config'))
     {
-      $schemas = sfFinder::type('file')->name('*schema.xml')->in($dirs);
+      $schemas = sfFinder::type('file')->name('*schema.xml')->prune('doctrine')->in($dirs);
       foreach ($schemas as $schema)
       {
         // reset local prefix

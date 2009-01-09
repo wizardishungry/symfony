@@ -34,7 +34,7 @@ abstract class sfBaseTask extends sfCommandApplicationTask
     $this->dispatcher->notifyUntil($event);
     if ($event->isProcessed())
     {
-      return $this->getReturnValue();
+      return $event->getReturnValue();
     }
 
     $this->checkProjectExists();
@@ -63,7 +63,7 @@ abstract class sfBaseTask extends sfCommandApplicationTask
       }
     }
 
-    $autoloader = sfSimpleAutoload::getInstance();
+    $autoloader = sfSimpleAutoload::getInstance(sfConfig::get('sf_cache_dir').'/project_autoload.cache');
     foreach ($this->configuration->getModelDirs() as $dir)
     {
       $autoloader->addDirectory($dir);

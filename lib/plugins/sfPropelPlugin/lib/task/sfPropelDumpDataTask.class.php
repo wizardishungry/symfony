@@ -55,16 +55,16 @@ The task will dump data in [data/fixtures/%target%|COMMENT]
 (data/fixtures/dump.yml in the example).
 
 The dump file is in the YML format and can be re-imported by using
-the [propel:data-load|INFO] task.
+the [propel:data-dump|INFO] task.
 
 By default, the task use the [propel|COMMENT] connection as defined in [config/databases.yml|COMMENT].
 You can use another connection by using the [connection|COMMENT] option:
 
-  [./symfony propel:data-load --connection="name" frontend|INFO]
+  [./symfony propel:data-dump --connection="name" frontend|INFO]
 
 If you only want to dump some classes, use the [classes|COMMENT] option:
 
-  [./symfony propel:data-load --classes="Article,Category" frontend|INFO]
+  [./symfony propel:data-dump --classes="Article,Category" frontend|INFO]
 EOF;
   }
 
