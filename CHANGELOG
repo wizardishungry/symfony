@@ -1,9 +1,29 @@
-Version 1.2.3
+Version 1.2.4
 -------------
 See the UPGRADE_TO_1_1 for upgrading 1.0 projects first to 1.1.
 See the UPGRADE_TO_1_2 file for more information about upgrading your projects from 1.1 to 1.2.
 
 All the new features are documented in the What's new? tutorial (http://www.symfony-project.org/tutorial/1_2/whats-new)
+
+ * [15247]: fixed wrong test in sfWebDebug. fixed #5790
+ * [15223]: escaped variables in exceptions in the development environment (closes #5743)
+
+Doctrine Plugin:
+
+ * [15243]: Fixes issue where embedded forms are saved before the parent form is saved. This causes issues if the embedded form has a foreign key to the parent and in that case the foreign key is not present yet (closes #5617)
+ * [15242]: Fixes php notice being thrown in obscure cases in sfFormDoctrine (closes #5773)
+ * [15241]: Fixes issue with generated filter forms using wrong widget (closes #5784)
+ * [15240]: Fixes regression with admin generators (closes #5785)
+ * [15219]: Fixing issue with composite primary key models and crud/generators (closes #5695)
+ * [15218]: Fixes issue with sfDoctrineRecord::__call() (closes #5685)
+
+Propel Plugin:
+
+ * [15230]: fixing propel external to specific revision to avoid problems with propel introducing regressions. fixes #5768
+
+
+Version 1.2.3
+-------------
 
  * [15156]: fixed project:enable task to clear only cache of the given application and environment. fixes #5750
  * [15152]: backported Urdu language files. There is a small chance that this file does not work completely for 1.2 but it is better than not having it at all. refs #5410.
