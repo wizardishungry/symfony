@@ -279,6 +279,7 @@ class sfFileCache extends sfCache
     }
 
     $tmpFile = $path . '.' . getmypid();
+
     if (!$fp = @fopen($tmpFile, 'wb'))
     {
        throw new sfCacheException(sprintf('Unable to write cache file "%s".', $tmpFile));
@@ -290,7 +291,8 @@ class sfFileCache extends sfCache
     @fclose($fp);
 
     chmod($tmpFile, 0666);
-    @rename($tmpFile, $path);
+    @unlink($path);
+    rename($tmpFile, $path);
     umask($current_umask);
 
     return true;
