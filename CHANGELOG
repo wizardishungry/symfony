@@ -5,6 +5,7 @@ See the UPGRADE_TO_1_2 file for more information about upgrading your projects f
 
 All the new features are documented in the What's new? tutorial (http://www.symfony-project.org/tutorial/1_2/whats-new)
 
+ * [15257]: fixed issue with cache file corruption due to heavy load. fixes #5729
  * [15247]: fixed wrong test in sfWebDebug. fixed #5790
  * [15223]: escaped variables in exceptions in the development environment (closes #5743)
 
