@@ -77,7 +77,7 @@ abstract class sfFormDoctrine extends sfForm
   /**
    * Returns the current model name.
    */
-  abstract static public function getModelName();
+  abstract public function getModelName();
 
   /**
    * Returns true if the current form embeds a new object.
@@ -264,7 +264,7 @@ abstract class sfFormDoctrine extends sfForm
     foreach ($valuesToProcess as $field => $value)
     {
       $method = sprintf('update%sColumn', self::camelize($field));
-      
+
       if (method_exists($this, $method))
       {
         if (false === $ret = $this->$method($value))
@@ -282,7 +282,7 @@ abstract class sfFormDoctrine extends sfForm
         if ($this->validatorSchema[$field] instanceof sfValidatorFile)
         {
           $values[$field] = $this->processUploadedFile($field, null, $valuesToProcess);
-        }          
+        }
       }
     }
 
