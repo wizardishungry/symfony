@@ -77,7 +77,7 @@ abstract class sfFormDoctrine extends sfForm
   /**
    * Returns the current model name.
    */
-  abstract public function getModelName();
+  abstract static public function getModelName();
 
   /**
    * Returns true if the current form embeds a new object.
