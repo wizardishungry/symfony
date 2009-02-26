@@ -12,6 +12,7 @@ abstract class BaseArticle extends myDoctrineRecord
         $this->hasColumn('is_on_homepage', 'boolean', null, array('type' => 'boolean'));
         $this->hasColumn('title', 'string', 255, array('type' => 'string', 'length' => '255'));
         $this->hasColumn('body', 'string', 255, array('type' => 'string', 'length' => '255'));
+        $this->hasColumn('test_column', 'string', 255, array('type' => 'string', 'length' => '255'));
     }
 
     public function setUp()
@@ -19,7 +20,7 @@ abstract class BaseArticle extends myDoctrineRecord
         $this->hasOne('Author', array('local' => 'author_id',
                                       'foreign' => 'id'));
 
-        $i18n0 = new Doctrine_Template_I18n(array('fields' => array(0 => 'title', 1 => 'body')));
+        $i18n0 = new Doctrine_Template_I18n(array('fields' => array(0 => 'title', 1 => 'body', 2 => 'test_column')));
         $sluggable1 = new Doctrine_Template_Sluggable(array('fields' => array(0 => 'title'), 'uniqueBy' => array(0 => 'lang', 1 => 'title')));
         $i18n0->addChild($sluggable1);
         $timestampable0 = new Doctrine_Template_Timestampable();
