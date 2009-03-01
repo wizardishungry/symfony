@@ -144,7 +144,7 @@ class sfForm implements ArrayAccess, Iterator, Countable
 
   /**
    * Renders hidden form fields.
-   * 
+   *
    * @return string
    */
   public function renderHiddenFields()
@@ -1033,7 +1033,7 @@ class sfForm implements ArrayAccess, Iterator, Countable
    */
   public function rewind()
   {
-    $this->fieldNames = array_keys($this->widgetSchema->getFields());
+    $this->fieldNames = $this->widgetSchema->getPositions();
 
     reset($this->fieldNames);
     $this->count = count($this->fieldNames);
