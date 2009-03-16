@@ -112,7 +112,7 @@ abstract class sfLogger
    */
   public function log($message, $priority = self::INFO)
   {
-    if ($this->level < $priority)
+    if ($this->getLogLevel() < $priority)
     {
       return false;
     }
